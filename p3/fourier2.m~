@@ -1,0 +1,9 @@
+n = input("Ingresar numero de armonicos: ")
+V = 5;
+
+for t = 0:100
+    y = 0
+    for armonico = 1:n
+        y = (4*V)/()
+    end
+end
