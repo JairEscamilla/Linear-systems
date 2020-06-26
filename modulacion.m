@@ -1,10 +1,12 @@
 t = 0:0.00001:0.01;
-subp = 5;
+filas = 5;
+columnas = 2;
+fs = 1000;
 
 % Señal de frecuencia de 3.5 KHz (Tiempo)
 Sm = 0.5*sin(2*pi*3500*t);
-subplot(subp, 1, 1);
-plot(t, Sm);
+subplot(filas, columnas, 1);
+plot(t/0.0003, Sm);
 xlabel("Tiempo");   
 ylabel("Amplitud");
 title("Señal de 3.5 KHZ (Tiempo)");
@@ -12,8 +14,9 @@ grid on;
 
 % Señal de frecuencia de 3.5 KHz (Frecuencia)
 Smf = fft(Sm);
-subplot(subp, 1, 2);
-plot(t, abs(Smf));
+fn = 0:1:fs;
+subplot(filas, columnas, 2);
+plot(fn, abs(Smf));
 xlabel("Frecuencia");
 ylabel("Amplitud");
 title("Señal de frecuencia de 3.5 KHz");
@@ -21,7 +24,7 @@ title("Señal de frecuencia de 3.5 KHz");
 
 % Señal de frecuencia de 540 KHz (Tiempo) Portadora
 St = sin(2*pi*540000*t);
-subplot(subp, 1, 3);
+subplot(filas, columnas, 3);
 plot(t, St);
 xlabel("Tiempo");
 ylabel("Amplitud");
@@ -30,7 +33,7 @@ grid on;
 
 % Señal modulada (Tiempo)
 Sam = St.*Sm;
-subplot(subp, 1, 4);
+subplot(filas, columnas, 4);
 plot(t, Sam);
 xlabel("Tiempo");
 ylabel("Amplitud");
@@ -40,13 +43,13 @@ grid on;
 
 % Señal demodulada (Tiempo)
 sdt = Sam.* St;
-subplot(subp, 1, 5);
+subplot(filas, columnas, 5);
 plot(t, sdt);
 xlabel("Tiempo");
 ylabel("Amplitud");
 title("Señal demodulada");
 grid on;
-
+    
 % Reproduciendo la señal de 3.5 KHz
 sound(Sm);
 
